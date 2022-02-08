@@ -7,14 +7,14 @@ body{
         "status events"
         "main events";
 }
-div.status{
+div#status{
     width: 70vw;
     height: 10vh;
 }
-div.status.open{
-    background-color: chartreuse;
+div#status.open{
+    background-color: #7BC572;
 }
-div.status.closed{
+div#status.closed{
     background-color: crimson;
 }
 section.main{
