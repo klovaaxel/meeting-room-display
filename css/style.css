@@ -4,6 +4,7 @@ body{
     display: grid;
     color: white;
     font-family: 'Atkinson Hyperlegible';
+    font-size: 2vw;
     grid-template-areas: 
         "status events"
         "main events";
@@ -12,11 +13,14 @@ div#status{
     width: 70vw;
     height: 10vh;
 }
-div#status.open{
+div#status.open, section.events #event-container > div > .uppcoming{
     background-color: #7BC572;
 }
-div#status.closed{
-    background-color: crimson;
+div#status.closed, section.events #event-container > div > .active{
+    background-color: #C57272;
+}
+section.events #event-container > div > .ended{
+    background-color: #9B9B9B;
 }
 section.main{
     grid-area: main;
@@ -25,13 +29,63 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    
+    margin-left: 0.2em;
 }
 section.events{
     grid-area: events;
     width: 30vw;
     height: 100vh;
     background-color: #515151;
+    position: relative;
+}
+section.events h2{
+    text-align: center;
+}
+section.events #event-container > div{
+    background-color: #777777;
+    border-radius: 1em;
+    margin: 0.5em;
+    display: grid;
+    grid-template-areas: 
+        "status time"
+        "status title";
+}
+section.events #event-container > div h3{
+    margin-left: 2vw;
+    grid-area: title;
+}
+section.events #event-container > div time{
+    margin-left: 2vw;
+    margin-right: 0.5em;
+    grid-area: time;
+}
+section.events #event-container > div time:last-of-type{
+    margin-left: 7ch;
+}
+section.events #event-container > div > div{
+    grid-area: status;
+    border-radius: 1em 0 0 1em;
+}
+#clock{
+    font-size: 10vw;
+    text-align: center;
+    align-self: flex-end;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+h1{
+    font-size: 7vw;
+    margin: 0;
+}
+h2{
+    font-size: 7vw;
+    margin: 0;
+}
+h3{
+    font-size: 3vw;
+    margin: 0;
 }
 
 @font-face {
