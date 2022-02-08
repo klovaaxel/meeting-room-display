@@ -1,0 +1,29 @@
+{
+  "name": "meeting-room-display",
+  "version": "1.0.0",
+  "description": "PWA for meeting room displays",
+  "main": "index.html",
+  "dependencies": {
+    "ical.js": "^1.5.0",
+    "jquery": "^3.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klovaaxel/meeting-room-display.git"
+  },
+  "keywords": [
+    "meeting",
+    "room",
+    "display"
+  ],
+  "author": "klovaaxel",
+  "license": "SEE LICENSE IN GITHUB",
+  "bugs": {
+    "url": "https://github.com/klovaaxel/meeting-room-display/issues"
+  },
+  "homepage": "https://github.com/klovaaxel/meeting-room-display#readme"
+}
