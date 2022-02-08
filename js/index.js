@@ -31,28 +31,31 @@ if(today.getDay() < 10){
 //--- ICS Feed fetcher and data handler
 let iCalendarData;
 let jcalData;
-$.ajax({
-    url: icsURL,
-    method: 'GET',
-}).done(function(data, textStatus, jqXHR){
-        jcalData = ICAL.parse(data);
 
-        jcalData[2]
-            .slice(1)
-            .forEach(event => {
-        
-                let eventStartDate = event[1][2][3].split("T")[0];
+function getICS(){
+    console.log("Getting ICS Feed");
 
-                if (eventStartDate == todayDate) {    
-                    //-- Add todays events to list
-                    todayEvents.push(event);  
-                }
-        });
-        //!! To start 
-        addEventToHTML(todayEvents)
-        
-  });
+    $.ajax({
+        url: icsURL,
+        method: 'GET',
+    }).done(function(data, textStatus, jqXHR){
+            jcalData = ICAL.parse(data);
 
+            jcalData[2]
+                .slice(1)
+                .forEach(event => {
+            
+                    let eventStartDate = event[1][2][3].split("T")[0];
+
+                    if (eventStartDate == todayDate) {    
+                        //-- Add todays events to list
+                        todayEvents.push(event);  
+                    }
+
+                    addEventToHTML(todayEvents)
+            });                   
+    });
+}
 //-- Update HTML with Event Data 
 function addEventToHTML(events){
 
@@ -102,7 +105,8 @@ function addEventToHTML(events){
         container.appendChild(startTime);
         container.appendChild(endTime);
         container.appendChild(status);
-
+        
+        document.getElementById("event-container").innerHTML = "";
         document.getElementById("event-container").appendChild(container);
     });
     if(activeEvents.length > 0){
@@ -128,3 +132,5 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
+
+getICS()

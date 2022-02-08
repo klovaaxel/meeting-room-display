@@ -3,6 +3,7 @@ body{
     padding: 0;
     display: grid;
     color: white;
+    font-family: 'Atkinson Hyperlegible';
     grid-template-areas: 
         "status events"
         "main events";
@@ -31,4 +32,11 @@ section.events{
     width: 30vw;
     height: 100vh;
     background-color: #515151;
+}
+
+@font-face {
+    font-family: 'Atkinson Hyperlegible';
+    src: url('../resources/fonts/AtkinsonHyperlegible-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
