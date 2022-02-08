@@ -15,7 +15,6 @@ let today = new Date();
 let todayWeekDay = weekDays[today.getDay()-1]
 document.getElementById("weekDay").appendChild(document.createTextNode(todayWeekDay));
 
-
 //Get Todays date and format it with leading zeroes if value less than 10
 let todayDate = today.getFullYear()+'-'
 if(today.getMonth()+1 < 10){
@@ -41,50 +40,77 @@ $.ajax({
         jcalData[2]
             .slice(1)
             .forEach(event => {
-                let eventTitle = event[1][1][3];
+        
                 let eventStartDate = event[1][2][3].split("T")[0];
-                let eventStartTime = event[1][2][3].split("T")[1].split(":")[0] + ":" + event[1][2][3].split("T")[1].split(":")[1];
-                let eventEndDate = event[1][3][3].split("T")[0];
-                let eventEndTime = event[1][3][3].split("T")[1].split(":")[0] + ":" + event[1][3][3].split("T")[1].split(":")[1];
-                
-
 
                 if (eventStartDate == todayDate) {    
                     //-- Add todays events to list
-                    todayEvents.push(event);
-
-                    //-- Create HTML objects with event content
-                    let title = document.createElement("h3");
-                    title.appendChild(document.createTextNode(eventTitle));
-
-                    let startTime = document.createElement("time");
-                    startTime.appendChild(document.createTextNode(eventStartTime));
-
-                    let endTime = document.createElement("time");
-                    endTime.appendChild(document.createTextNode(eventEndTime));
-
-                    let status = document.createElement("div");
-
-                    //-- Get status of event
-                    let eventHasStarted = eventStartTime.split(":")[0] < time.split(":")[0] && eventStartTime.split(":")[1] < time.split(":")[1];
-                    let eventHasEnded = eventEndTime.split(":")[0] < time.split(":")[0] && eventEndTime.split(":")[1] < time.split(":")[1];
-                    
-                    if (!eventHasStarted && !eventHasEnded) { status.classList = "uppcoming"; }
-                    if (eventHasStarted && !eventHasEnded) { status.classList = "active"; }
-                    if (eventHasEnded) { status.classList = "ended"; }
-
-                    //-- Append Content to DOM document
-                    let container = document.createElement("div")
-                    container.appendChild(title);
-                    container.appendChild(startTime);
-                    container.appendChild(endTime);
-                    container.appendChild(status);
-
-                    document.getElementById("event-container").appendChild(container);
+                    todayEvents.push(event);  
                 }
         });
+        //!! To start 
+        addEventToHTML(todayEvents)
         
   });
+
+//-- Update HTML with Event Data 
+function addEventToHTML(events){
+
+    let activeEvents = [];
+    let endedEvents = [];
+    let uppcomingEvents = [];
+
+    events.forEach(event => {
+        let eventTitle = event[1][1][3];
+        let eventStartDate = event[1][2][3].split("T")[0];
+        let eventStartTime = event[1][2][3].split("T")[1].split(":")[0] + ":" + event[1][2][3].split("T")[1].split(":")[1];
+        let eventEndDate = event[1][3][3].split("T")[0];
+        let eventEndTime = event[1][3][3].split("T")[1].split(":")[0] + ":" + event[1][3][3].split("T")[1].split(":")[1];
+
+        //-- Create HTML objects with event content
+        let title = document.createElement("h3");
+        title.appendChild(document.createTextNode(eventTitle));
+
+        let startTime = document.createElement("time");
+        startTime.appendChild(document.createTextNode(eventStartTime));
+
+        let endTime = document.createElement("time");
+        endTime.appendChild(document.createTextNode(eventEndTime));
+
+        let status = document.createElement("div");
+
+        //-- Get status of event
+        let eventHasStarted = eventStartTime.split(":")[0] < time.split(":")[0] && eventStartTime.split(":")[1] < time.split(":")[1];
+        let eventHasEnded = eventEndTime.split(":")[0] < time.split(":")[0] && eventEndTime.split(":")[1] < time.split(":")[1];
+
+        if (!eventHasStarted && !eventHasEnded) { 
+            eventStatus.classList = "uppcoming";
+            uppcomingEvents.push(event);
+        }
+        if (eventHasStarted && !eventHasEnded) { 
+            status.classList = "active"; 
+            activeEvents.push(event);
+        }
+        if (eventHasEnded) { 
+            status.classList = "ended"; 
+            endedEvents.push(event)
+        }
+
+        //-- Append Content to DOM document
+        let container = document.createElement("div")
+        container.appendChild(title);
+        container.appendChild(startTime);
+        container.appendChild(endTime);
+        container.appendChild(status);
+
+        document.getElementById("event-container").appendChild(container);
+    });
+    if(activeEvents.length > 0){
+        document.getElementById("status").classList = "closed"
+    }else{
+        document.getElementById("status").classList = "open"
+    }
+}
 
 //-- Clock
 function startTime() {
