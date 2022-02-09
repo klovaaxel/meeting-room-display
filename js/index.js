@@ -152,14 +152,18 @@ function msToHM( ms ) {
     // 1- Convert to seconds:
     let seconds = ms / 1000;
     // 2- Extract hours:
-    const hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
+    const hours = Math.floor(seconds / 3600); // 3,600 seconds in 1 hour
+
     seconds = seconds % 3600; // seconds remaining after extracting hours
     // 3- Extract minutes:
-    const minutes = parseInt( seconds / 60 ); // 60 seconds in 1 minute
+    const minutes = Math.floor(seconds / 60 + 1); // 60 seconds in 1 minute
+
     if (hours == 0) {
-        return minutes + 1 + "m";
+        return minutes + "m";
     }
-    return hours+"hours "+minutes + 1 + "minutes";
+    return hours+" hours "+minutes + " minutes";
+    // Code from Ozil https://stackoverflow.com/users/2168733/ozil and Ronan Quillevere https://stackoverflow.com/users/1301197/ronan-quillevere
+    // https://stackoverflow.com/questions/29816872/how-can-i-convert-milliseconds-to-hhmmss-format-using-javascript
 }
 
 
