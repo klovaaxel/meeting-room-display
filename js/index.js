@@ -12,7 +12,7 @@ let icsURL = 'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc
 document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
 
 //--- Today, Dates and day of the week
-let weekDays = ["Mondag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"]
+let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
 let today = new Date();
 let todayWeekDay = weekDays[today.getDay()-1]
