@@ -75,18 +75,16 @@ function addEventToHTML(events){
         title.appendChild(document.createTextNode(eventTitle));
 
         let startTime = document.createElement("time");
-        startTime.appendChild(document.createTextNode(eventStartDate.getHours + ":" + eventStartDate.getMinutes));
+        startTime.appendChild(document.createTextNode(eventStartDate.getHours() + ":" + eventStartDate.getMinutes()));
 
         let endTime = document.createElement("time");
-        endTime.appendChild(document.createTextNode(eventEndDate.getHours + ":" + eventEndDate.getMinutes));
+        endTime.appendChild(document.createTextNode(eventEndDate.getHours() + ":" + eventEndDate.getMinutes()));
 
         let eventStatus = document.createElement("div");
 
         //-- Get status of event
-        let eventHasStarted = eventStartDate >= today;
-        console.log(eventHasStarted)
-        let eventHasEnded = eventEndDate >= today;
-        console.log(eventHasEnded)
+        let eventHasStarted = eventStartDate <= today;
+        let eventHasEnded = eventEndDate <= today;
 
         if (!eventHasStarted && !eventHasEnded) { 
             eventStatus.classList = "uppcoming";
