@@ -11,15 +11,15 @@
 <body onload="startTime()">
     <div class="open" id="status"></div>
     <section class="main">
-        <h1 id="name"></h1>
-        <p id="nextBookingTime"></p>
+        <h1 id="name" class="name"></h1>
+        <p id="nextBookingTime" class="nextBookingTime"></p>
         <button onclick="getICS()">TEMPORARY GET ICS</button>
         <img class="logo" src="" alt="">
     </section>
     <section class="events">
-        <h2 id="weekDay"></h2>
-        <div id="event-container"></div>
-        <div id="clock"></div>
+        <h2 id="weekDay" class="weekDay"></h2>
+        <div id="event-container" class="event-container"></div>
+        <div id="clock" class="clock"></div>
     </section>
 </body>
 <script src="node_modules/jquery/dist/jquery.min.js"></script>

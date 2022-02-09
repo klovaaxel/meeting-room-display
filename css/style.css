@@ -13,13 +13,13 @@ div#status{
     width: 70vw;
     height: 10vh;
 }
-div#status.open, section.events #event-container > div > .uppcoming{
+div#status.open, section.events .event-container > div > .uppcoming{
     background-color: #7BC572;
 }
-div#status.closed, section.events #event-container > div > .active{
+div#status.closed, section.events .event-container > div > .active{
     background-color: #C57272;
 }
-section.events #event-container > div > .ended{
+section.events .event-container > div > .ended{
     background-color: #9B9B9B;
 }
 section.main{
@@ -41,7 +41,7 @@ section.events{
 section.events h2{
     text-align: center;
 }
-section.events #event-container > div{
+section.events .event-container > div{
     background-color: #777777;
     border-radius: 1em;
     margin: 0.5em;
@@ -50,24 +50,24 @@ section.events #event-container > div{
         "status time"
         "status title";
 }
-section.events #event-container > div h3{
+section.events .event-container > div h3{
     margin-left: 2vw;
     grid-area: title;
 }
-section.events #event-container > div time{
+section.events .event-container > div time{
     margin-left: 2vw;
     margin-right: 0.5em;
     grid-area: time;
 }
-section.events #event-container > div time:last-of-type{
+section.events .event-container > div time:last-of-type{
     margin-left: 7ch;
 }
-section.events #event-container > div > div{
+section.events .event-container > div > div{
     grid-area: status;
     border-radius: 1em 0 0 1em;
     width: 1.5em;
 }
-#clock{
+.clock{
     font-size: 10vw;
     text-align: center;
     align-self: flex-end;
