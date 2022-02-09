@@ -62,6 +62,8 @@ function addEventToHTML(events){
     let activeEvents = [];
     let endedEvents = [];
     let uppcomingEvents = [];
+    
+    document.getElementById("event-container").innerHTML = "";
 
     events.forEach(event => {
         let eventTitle = event[1][1][3];
@@ -106,7 +108,6 @@ function addEventToHTML(events){
         container.appendChild(endTime);
         container.appendChild(eventStatus);
         
-        document.getElementById("event-container").innerHTML = "";
         document.getElementById("event-container").appendChild(container);
     });
     if(activeEvents.length > 0){
