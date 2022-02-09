@@ -83,8 +83,8 @@ function addEventToHTML(events){
         let eventStatus = document.createElement("div");
 
         //-- Get status of event
-        let eventHasStarted = eventStartTime.split(":")[0] < time.split(":")[0] && eventStartTime.split(":")[1] < time.split(":")[1];
-        let eventHasEnded = eventEndTime.split(":")[0] < time.split(":")[0] && eventEndTime.split(":")[1] < time.split(":")[1];
+        let eventHasStarted = eventStartTime.split(":")[0] <= time.split(":")[0] && eventStartTime.split(":")[1] <= time.split(":")[1];
+        let eventHasEnded = eventEndTime.split(":")[0] <= time.split(":")[0] && eventEndTime.split(":")[1] <= time.split(":")[1];
 
         if (!eventHasStarted && !eventHasEnded) { 
             eventStatus.classList = "uppcoming";
@@ -104,7 +104,7 @@ function addEventToHTML(events){
         container.appendChild(title);
         container.appendChild(startTime);
         container.appendChild(endTime);
-        container.appendChild(status);
+        container.appendChild(eventStatus);
         
         document.getElementById("event-container").innerHTML = "";
         document.getElementById("event-container").appendChild(container);
