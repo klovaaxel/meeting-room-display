@@ -6,8 +6,8 @@ let endedEvents = [];
 let uppcomingEvents = [];
 
 //-- Temp values Should be enterd on first boot
-let nameMonitor = "Axel Karlsson" 
-let icsURL = 'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc6a54c1fc0@stenungsund.se/2ff6c8f6193c49699814159643a9969b7290947781098632186/calendar.ics'
+let nameMonitor = "" //"Axel Karlsson" 
+let icsURL = "" //'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc6a54c1fc0@stenungsund.se/2ff6c8f6193c49699814159643a9969b7290947781098632186/calendar.ics'
 
 document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
 
@@ -148,6 +148,7 @@ function checkTime(i) {
     return i;
 }
 
+//-- Convert milliseconds to Hours and Minutes, omitting seconds
 function msToHM( ms ) {
     // 1- Convert to seconds:
     let seconds = ms / 1000;
@@ -166,10 +167,99 @@ function msToHM( ms ) {
     // https://stackoverflow.com/questions/29816872/how-can-i-convert-milliseconds-to-hhmmss-format-using-javascript
 }
 
-
+//-- Start function (run on load)
 function start(){
-    startTime()
-    getICS()
-    updateTimeToNextEvent(uppcomingEvents)
-    setTimeout(start, 10000);
+    getLocalStorage();     
+}
+function loop(){
+    startTime();
+    getICS();
+    updateTimeToNextEvent(uppcomingEvents);
+    setTimeout(loop, 10000);
+} 
+
+//-- Local Storage
+
+//localStorage.setItem('nameMonitor', nameMonitor)
+//localStorage.setItem('url', url)
+function getLocalStorage(){
+    console.log("Monitor")
+
+    if(localStorage.getItem("nameMonitor") == null && localStorage.getItem("icsURL") == null){
+        displayNewUserPrompt();
+    }else{
+        nameMonitor = localStorage.getItem("nameMonitor");
+        icsURL = localStorage.getItem("url");
+        console.log(nameMonitor)
+        document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
+        loop();
+    }
+}
+
+
+function displayNewUserPrompt(){
+    // If prompt is open then do nothing
+    if ((document.getElementById("prompt-new-user")) != null){
+        return
+    }
+
+    // Screen name
+    nameLabel = document.createElement("label");
+    nameLabel.for = "screen-name";
+    nameLabel.id = "screen-name-label";
+    nameLabel.appendChild(document.createTextNode("Screen Name"));
+
+    nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.id = "screen-name";
+    nameInput.name = "screen-name";
+
+    // URL
+    urlLabel = document.createElement("label");
+    urlLabel.for = "url";
+    urlLabel.id = "url-label";
+    urlLabel.appendChild(document.createTextNode("ICS URL"));
+
+    urlInput = document.createElement("input");
+    urlInput.type = "text";
+    urlInput.id = "url";
+    urlInput.name = "url";
+
+    // Submit
+    submitBTN = document.createElement("button");
+    submitBTN.type = "button";
+    submitBTN.setAttribute("onclick","submitFormNewUser();");
+    submitBTN.appendChild(document.createTextNode("Continue"));
+
+    //form
+    form = document.createElement("form");
+    form.appendChild(nameLabel);
+    form.appendChild(nameInput);
+    form.appendChild(urlLabel);
+    form.appendChild(urlInput);
+    form.appendChild(submitBTN);
+
+    //div container
+    div = document.createElement("div");
+    div.id = "prompt-new-user";
+    div.appendChild(form);
+
+    document.body.appendChild(div);
+}
+
+
+function submitFormNewUser(){
+    formContainer = document.getElementById("prompt-new-user");
+
+    localStorage.setItem("nameMonitor", document.getElementById("screen-name").value);
+    nameMonitor = localStorage.getItem("nameMonitor");
+
+    localStorage.setItem("icsURL", document.getElementById("url").value);
+    icsURL = localStorage.getItem("icsURL");
+
+    document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
+
+    formContainer.remove()
+
+    loop()
 }
