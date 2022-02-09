@@ -9,6 +9,18 @@ body{
         "status events"
         "main events";
 }
+h1{
+    font-size: 7vw;
+    margin: 0;
+}
+h2{
+    font-size: 7vw;
+    margin: 0;
+}
+h3{
+    font-size: 3vw;
+    margin: 0;
+}
 div#status{
     width: 70vw;
     height: 10vh;
@@ -36,10 +48,15 @@ section.events{
     width: 30vw;
     height: 100vh;
     background-color: #515151;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 section.events h2{
     text-align: center;
+}
+section.events .event-container{
+    flex: 1 1 100%;
+    overflow-y: scroll;
 }
 section.events .event-container > div{
     background-color: #777777;
@@ -49,6 +66,12 @@ section.events .event-container > div{
     grid-template-areas: 
         "status time"
         "status title";
+}
+.clock{
+    font-size: 10vw;
+    text-align: center;
+    align-self: flex-end;
+    width: 100%;
 }
 section.events .event-container > div h3{
     margin-left: 2vw;
@@ -66,27 +89,6 @@ section.events .event-container > div > div{
     grid-area: status;
     border-radius: 1em 0 0 1em;
     width: 1.5em;
-}
-.clock{
-    font-size: 10vw;
-    text-align: center;
-    align-self: flex-end;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-}
-
-h1{
-    font-size: 7vw;
-    margin: 0;
-}
-h2{
-    font-size: 7vw;
-    margin: 0;
-}
-h3{
-    font-size: 3vw;
-    margin: 0;
 }
 
 @font-face {
