@@ -37,6 +37,7 @@ let jcalData;
 
 function getICS(){
     console.log("Getting ICS Feed");
+    console.log(icsURL)
 
     $.ajax({
         url: icsURL,
@@ -189,8 +190,7 @@ function getLocalStorage(){
         displayNewUserPrompt();
     }else{
         nameMonitor = localStorage.getItem("nameMonitor");
-        icsURL = localStorage.getItem("url");
-        console.log(nameMonitor)
+        icsURL = localStorage.getItem("icsURL");
         document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
         loop();
     }
@@ -259,7 +259,7 @@ function submitFormNewUser(){
 
     document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
 
-    formContainer.remove()
+    formContainer.remove();
 
-    loop()
+    loop();
 }
