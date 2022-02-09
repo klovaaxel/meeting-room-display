@@ -1,6 +1,9 @@
 //-- Global variables
 let time;
 let todayEvents = [];
+let activeEvents = [];
+let endedEvents = [];
+let uppcomingEvents = [];
 
 //-- Temp values Should be enterd on first boot
 let nameMonitor = "Axel Karlsson" 
@@ -39,6 +42,7 @@ function getICS(){
         url: icsURL,
         method: 'GET',
     }).done(function(data, textStatus, jqXHR){
+            todayEvents.length = 0;
             jcalData = ICAL.parse(data);
 
             jcalData[2]
@@ -59,10 +63,10 @@ function getICS(){
 //-- Update HTML with Event Data 
 function addEventToHTML(events){
 
-    let activeEvents = [];
-    let endedEvents = [];
-    let uppcomingEvents = [];
-    
+    activeEvents.length = 0;
+    endedEvents.length = 0;
+    uppcomingEvents.length = 0;
+
     document.getElementById("event-container").innerHTML = "";
 
     events.forEach(event => {
@@ -106,10 +110,26 @@ function addEventToHTML(events){
         document.getElementById("event-container").appendChild(container);
     });
     if(activeEvents.length > 0){
-        document.getElementById("status").classList = "closed"
+        document.getElementById("status").classList = "closed";
     }else{
-        document.getElementById("status").classList = "open"
+        document.getElementById("status").classList = "open";
     }
+    
+    //-- Add/update text saying how long till next event
+    updateTimeToNextEvent(uppcomingEvents)
+
+}
+
+function updateTimeToNextEvent(events){
+    //-- Add text saying how long till next event
+    p = document.getElementById("nextBookingTime");
+    p.innerHTML = ""
+    if(events === undefined || events.length == 0){
+        p.appendChild(document.createTextNode("Unbooked for the rest of the day"));
+    }else{
+        timeToNextEvent = msToHM(new Date(events[0][1][2][3]) - today);
+        p.appendChild(document.createTextNode(timeToNextEvent + " to next booking"))
+    } 
 }
 
 //-- Clock
@@ -121,7 +141,6 @@ function startTime() {
     document.getElementById('clock').innerHTML = "";
     document.getElementById('clock').appendChild(document.createTextNode(h + ":" + m));
     time = h + ":" + m;
-    setTimeout(startTime, 5000);
 }
 
 function checkTime(i) {
@@ -129,4 +148,24 @@ function checkTime(i) {
     return i;
 }
 
-getICS()
+function msToHM( ms ) {
+    // 1- Convert to seconds:
+    let seconds = ms / 1000;
+    // 2- Extract hours:
+    const hours = parseInt( seconds / 3600 ); // 3,600 seconds in 1 hour
+    seconds = seconds % 3600; // seconds remaining after extracting hours
+    // 3- Extract minutes:
+    const minutes = parseInt( seconds / 60 ); // 60 seconds in 1 minute
+    if (hours == 0) {
+        return minutes + 1 + "m";
+    }
+    return hours+"hours "+minutes + 1 + "minutes";
+}
+
+
+function start(){
+    startTime()
+    getICS()
+    updateTimeToNextEvent(uppcomingEvents)
+    setTimeout(start, 10000);
+}

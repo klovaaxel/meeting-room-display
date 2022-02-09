@@ -41,7 +41,11 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    margin-left: 0.2em;
+    margin-left: 2vw;
+}
+section.main .nextBookingTime{
+    margin-left: 2vw;
+
 }
 section.events{
     grid-area: events;
