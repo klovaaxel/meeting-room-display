@@ -65,6 +65,7 @@ section.events #event-container > div time:last-of-type{
 section.events #event-container > div > div{
     grid-area: status;
     border-radius: 1em 0 0 1em;
+    width: 1.5em;
 }
 #clock{
     font-size: 10vw;
