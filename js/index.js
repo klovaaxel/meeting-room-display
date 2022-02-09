@@ -161,7 +161,7 @@ function msToHM( ms ) {
     const minutes = Math.floor(seconds / 60 + 1); // 60 seconds in 1 minute
 
     if (hours == 0) {
-        return minutes + "m";
+        return minutes + " minutes";
     }
     return hours+" hours "+minutes + " minutes";
     // Code from Ozil https://stackoverflow.com/users/2168733/ozil and Ronan Quillevere https://stackoverflow.com/users/1301197/ronan-quillevere
