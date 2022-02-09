@@ -67,26 +67,26 @@ function addEventToHTML(events){
 
     events.forEach(event => {
         let eventTitle = event[1][1][3];
-        let eventStartDate = event[1][2][3].split("T")[0];
-        let eventStartTime = event[1][2][3].split("T")[1].split(":")[0] + ":" + event[1][2][3].split("T")[1].split(":")[1];
-        let eventEndDate = event[1][3][3].split("T")[0];
-        let eventEndTime = event[1][3][3].split("T")[1].split(":")[0] + ":" + event[1][3][3].split("T")[1].split(":")[1];
+        let eventStartDate =  new Date(event[1][2][3]);
+        let eventEndDate = new Date(event[1][3][3]);
 
         //-- Create HTML objects with event content
         let title = document.createElement("h3");
         title.appendChild(document.createTextNode(eventTitle));
 
         let startTime = document.createElement("time");
-        startTime.appendChild(document.createTextNode(eventStartTime));
+        startTime.appendChild(document.createTextNode(eventStartDate.getHours + ":" + eventStartDate.getMinutes));
 
         let endTime = document.createElement("time");
-        endTime.appendChild(document.createTextNode(eventEndTime));
+        endTime.appendChild(document.createTextNode(eventEndDate.getHours + ":" + eventEndDate.getMinutes));
 
         let eventStatus = document.createElement("div");
 
         //-- Get status of event
-        let eventHasStarted = eventStartTime.split(":")[0] <= time.split(":")[0] && eventStartTime.split(":")[1] <= time.split(":")[1];
-        let eventHasEnded = eventEndTime.split(":")[0] <= time.split(":")[0] && eventEndTime.split(":")[1] <= time.split(":")[1];
+        let eventHasStarted = eventStartDate >= today;
+        console.log(eventHasStarted)
+        let eventHasEnded = eventEndDate >= today;
+        console.log(eventHasEnded)
 
         if (!eventHasStarted && !eventHasEnded) { 
             eventStatus.classList = "uppcoming";
@@ -106,6 +106,7 @@ function addEventToHTML(events){
         container.appendChild(title);
         container.appendChild(startTime);
         container.appendChild(endTime);
+
         container.appendChild(eventStatus);
         
         document.getElementById("event-container").appendChild(container);
