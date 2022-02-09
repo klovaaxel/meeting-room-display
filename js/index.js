@@ -80,7 +80,7 @@ function addEventToHTML(events){
         let endTime = document.createElement("time");
         endTime.appendChild(document.createTextNode(eventEndTime));
 
-        let status = document.createElement("div");
+        let eventStatus = document.createElement("div");
 
         //-- Get status of event
         let eventHasStarted = eventStartTime.split(":")[0] < time.split(":")[0] && eventStartTime.split(":")[1] < time.split(":")[1];
@@ -91,11 +91,11 @@ function addEventToHTML(events){
             uppcomingEvents.push(event);
         }
         if (eventHasStarted && !eventHasEnded) { 
-            status.classList = "active"; 
+            eventStatus.classList = "active"; 
             activeEvents.push(event);
         }
         if (eventHasEnded) { 
-            status.classList = "ended"; 
+            eventStatus.classList = "ended"; 
             endedEvents.push(event)
         }
 
