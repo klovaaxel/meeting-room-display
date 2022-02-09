@@ -74,11 +74,8 @@ function addEventToHTML(events){
         let title = document.createElement("h3");
         title.appendChild(document.createTextNode(eventTitle));
 
-        let startTime = document.createElement("time");
-        startTime.appendChild(document.createTextNode(eventStartDate.getHours() + ":" + eventStartDate.getMinutes()));
-
-        let endTime = document.createElement("time");
-        endTime.appendChild(document.createTextNode(eventEndDate.getHours() + ":" + eventEndDate.getMinutes()));
+        let eventTime = document.createElement("time");
+        eventTime.appendChild(document.createTextNode(eventStartDate.getHours() + ":" + eventStartDate.getMinutes() + " - " + eventEndDate.getHours() + ":" + eventEndDate.getMinutes()));
 
         let eventStatus = document.createElement("div");
 
@@ -102,8 +99,7 @@ function addEventToHTML(events){
         //-- Append Content to DOM document
         let container = document.createElement("div")
         container.appendChild(title);
-        container.appendChild(startTime);
-        container.appendChild(endTime);
+        container.appendChild(eventTime);
 
         container.appendChild(eventStatus);
         
