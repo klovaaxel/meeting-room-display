@@ -18,19 +18,6 @@ let today = new Date();
 let todayWeekDay = weekDays[today.getDay()-1]
 document.getElementById("weekDay").appendChild(document.createTextNode(todayWeekDay));
 
-//Get Todays date and format it with leading zeroes if value less than 10
-let todayDate = today.getFullYear()+'-'
-if(today.getMonth()+1 < 10){
-    todayDate  += "0" + (today.getMonth()+1)+'-'
-}else{
-    todayDate  += (today.getMonth()+1)+'-'
-}
-if(today.getDay() < 10){
-    todayDate  += "0" + today.getDate()
-}else{
-    todayDate  += today.getDate()
-}
-
 //--- ICS Feed fetcher and data handler
 let iCalendarData;
 let jcalData;
@@ -50,11 +37,12 @@ function getICS(){
                 .slice(1)
                 .forEach(event => {
             
-                    let eventStartDate = event[1][2][3].split("T")[0];
+                    let eventStartDate = new Date(event[1][2][3]).getDate();
 
-                    if (eventStartDate == todayDate) {    
+                    if (eventStartDate == today.getDate()) {    
                         //-- Add todays events to list
                         todayEvents.push(event);  
+                        console.log(event)
                     }
 
                     addEventToHTML(todayEvents)
