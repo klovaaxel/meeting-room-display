@@ -42,7 +42,6 @@ function getICS(){
                     if (eventStartDate == today.getDate()) {    
                         //-- Add todays events to list
                         todayEvents.push(event);  
-                        console.log(event)
                     }
 
                     addEventToHTML(todayEvents)
@@ -51,6 +50,7 @@ function getICS(){
 }
 //-- Update HTML with Event Data 
 function addEventToHTML(events){
+    const today = new Date();
 
     activeEvents.length = 0;
     endedEvents.length = 0;
@@ -172,8 +172,6 @@ function loop(){
 //localStorage.setItem('nameMonitor', nameMonitor)
 //localStorage.setItem('url', url)
 function getLocalStorage(){
-    console.log("Monitor")
-
     if(localStorage.getItem("nameMonitor") == null && localStorage.getItem("icsURL") == null){
         displayNewUserPrompt();
     }else{
