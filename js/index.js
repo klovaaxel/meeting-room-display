@@ -68,8 +68,7 @@ function addEventToHTML(events){
         title.appendChild(document.createTextNode(eventTitle));
 
         let eventTime = document.createElement("time");
-        eventTime.appendChild(document.createTextNode(eventStartDate.getHours() + ":" + eventStartDate.getMinutes() + " - " + eventEndDate.getHours() + ":" + eventEndDate.getMinutes()));
-
+        eventTime.appendChild(document.createTextNode(eventStartDate.toISOString().slice(11, -8) + " - " + eventEndDate.toISOString().slice(11, -8)));
         let eventStatus = document.createElement("div");
 
         //-- Get status of event
