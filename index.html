@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#5A5E66"/>
+    <meta name="description" content="Displays availabilty for meeting rooms and people">
     <title>Meeting Room Display</title>
 
+    
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="apple-touch-icon" href="resources/icons/icon192.png">
 </head>
 <body onload="start()">
     <div class="open" id="status"></div>
@@ -25,4 +30,14 @@
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/ical.js/build/ical.js"></script>
 <script src="js/index.js"></script>
+<script>
+    navigator.serviceWorker
+        .register('service-worker.js')
+        .then(function(registration){
+            console.log("Service Worker Registered", registration)
+        })
+        .catch(function(err){
+            console.log("Service Worker Failed to Register", err)
+        });
+</script>
 </html>

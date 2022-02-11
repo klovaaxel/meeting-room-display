@@ -191,7 +191,7 @@ function displayNewUserPrompt(){
 
     // Screen name
     nameLabel = document.createElement("label");
-    nameLabel.for = "screen-name";
+    nameLabel.setAttribute("for", "screen-name");
     nameLabel.id = "screen-name-label";
     nameLabel.appendChild(document.createTextNode("Screen Name"));
 
@@ -202,7 +202,7 @@ function displayNewUserPrompt(){
 
     // URL
     urlLabel = document.createElement("label");
-    urlLabel.for = "url";
+    urlLabel.setAttribute("for", "url");
     urlLabel.id = "url-label";
     urlLabel.appendChild(document.createTextNode("ICS URL"));
 
