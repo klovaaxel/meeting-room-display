@@ -44,12 +44,12 @@ function getICS(){
                         todayEvents.push(event);  
                     }
 
-                    addEventToHTML(todayEvents)
-            });                   
+            });       
+            addEventsToHTML(todayEvents)
     });
 }
 //-- Update HTML with Event Data 
-function addEventToHTML(events){
+function addEventsToHTML(events){
     const today = new Date();
 
     activeEvents.length = 0;
@@ -123,8 +123,8 @@ function updateTimeToNextEvent(uppcomingEvents, activeEvents){
     }
     else{
         p.innerHTML = "";
-        timeEventEnd = msToHM(today - new Date(activeEvents[0][1][3][3]));
-        p.appendChild(document.createTextNode(timeEventEnd + " to next booking"))
+        timeEventEnd = msToHM(-(today - new Date(activeEvents[0][1][3][3])));
+        p.appendChild(document.createTextNode(timeEventEnd + " to end of current booking"))
     }
 }
 
@@ -170,7 +170,6 @@ function start(){
 function loop(){
     startTime();
     getICS();
-    updateTimeToNextEvent(uppcomingEvents);
     setTimeout(loop, 10000);
 } 
 
