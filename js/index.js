@@ -104,20 +104,28 @@ function addEventToHTML(events){
     }
     
     //-- Add/update text saying how long till next event
-    updateTimeToNextEvent(uppcomingEvents)
+    updateTimeToNextEvent(uppcomingEvents, activeEvents)
 
 }
 
-function updateTimeToNextEvent(events){
+function updateTimeToNextEvent(uppcomingEvents, activeEvents){
     //-- Add text saying how long till next event
     p = document.getElementById("nextBookingTime");
-    p.innerHTML = ""
-    if(events === undefined || events.length == 0){
-        p.appendChild(document.createTextNode("Unbooked for the rest of the day"));
-    }else{
-        timeToNextEvent = msToHM(new Date(events[0][1][2][3]) - today);
-        p.appendChild(document.createTextNode(timeToNextEvent + " to next booking"))
-    } 
+    if(activeEvents === undefined || activeEvents.length == 0){
+        if(uppcomingEvents === undefined || uppcomingEvents.length == 0){
+            p.innerHTML = "";
+            p.appendChild(document.createTextNode("Unbooked for the rest of the day"));
+        }else{
+            p.innerHTML = "";
+            timeToNextEvent = msToHM(new Date(uppcomingEvents[0][1][2][3]) - today);
+            p.appendChild(document.createTextNode(timeToNextEvent + " to next booking"))
+        }
+    }
+    else{
+        p.innerHTML = "";
+        timeEventEnd = msToHM(today - new Date(activeEvents[0][1][3][3]));
+        p.appendChild(document.createTextNode(timeEventEnd + " to next booking"))
+    }
 }
 
 //-- Clock
