@@ -19,6 +19,6 @@
     ],
     "name": "Meeting Room Screen",
     "short_name": "Meeting Rooms",
-    "scope": "/",
-    "start_url": "/index.html"
+    "scope": "/meeting-room-display/",
+    "start_url": "/meeting-room-display/index.html"
   }
