@@ -110,6 +110,7 @@ function addEventsToHTML(events){
 
 function updateTimeToNextEvent(uppcomingEvents, activeEvents){
     //-- Add text saying how long till next event
+    const today = new Date();
     p = document.getElementById("nextBookingTime");
     if(activeEvents === undefined || activeEvents.length == 0){
         if(uppcomingEvents === undefined || uppcomingEvents.length == 0){
