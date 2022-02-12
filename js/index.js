@@ -66,11 +66,10 @@ function addEventToHTML(events){
         //-- Create HTML objects with event content
         let title = document.createElement("h3");
         title.appendChild(document.createTextNode(eventTitle));
-
         let eventTime = document.createElement("time");
-        eventTime.appendChild(document.createTextNode(eventStartDate.toISOString().slice(11, -8) + " - " + eventEndDate.toISOString().slice(11, -8)));
+        eventTime.appendChild(document.createTextNode(eventStartDate.toString().split(" ")[4].slice(0, -3) + " - " + eventEndDate.toString().split(" ")[4].slice(0, -3)));
         let eventStatus = document.createElement("div");
-
+        
         //-- Get status of event
         let eventHasStarted = eventStartDate <= today;
         let eventHasEnded = eventEndDate <= today;
@@ -97,6 +96,7 @@ function addEventToHTML(events){
         
         document.getElementById("event-container").appendChild(container);
     });
+
     if(activeEvents.length > 0){
         document.getElementById("status").classList = "closed";
     }else{
