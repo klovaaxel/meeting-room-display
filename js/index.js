@@ -29,7 +29,7 @@ function getICS(){
     $.ajax({
         url: icsURL,
         method: 'GET',
-    }).done(function(data, textStatus, jqXHR){
+        success: function (data, textStatus, jqXHR) {
             todayEvents.length = 0;
             jcalData = ICAL.parse(data);
 
@@ -46,6 +46,14 @@ function getICS(){
 
             });       
             addEventsToHTML(todayEvents)
+        },
+        error: function (request, status, error) {
+            if(request.responseText == undefined){
+                alert("You probably have a CORS issue, To resolve this you can change the CORS header on your ICS/ICAL server (or set up a proxy server which adds a CORS header), or as a last resort disable cors entierly for this PWA")
+            }else{
+                alert(request.responseText);
+            }
+        }
     });
 }
 
