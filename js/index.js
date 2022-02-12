@@ -48,6 +48,7 @@ function getICS(){
             addEventsToHTML(todayEvents)
     });
 }
+
 //-- Update HTML with Event Data 
 function addEventsToHTML(events){
     const today = new Date();
@@ -105,7 +106,6 @@ function addEventsToHTML(events){
     
     //-- Add/update text saying how long till next event
     updateTimeToNextEvent(uppcomingEvents, activeEvents)
-
 }
 
 function updateTimeToNextEvent(uppcomingEvents, activeEvents){
@@ -188,7 +188,6 @@ function getLocalStorage(){
     }
 }
 
-
 function displayNewUserPrompt(){
     // If prompt is open then do nothing
     if ((document.getElementById("prompt-new-user")) != null){
@@ -238,7 +237,6 @@ function displayNewUserPrompt(){
 
     document.body.appendChild(div);
 }
-
 
 function submitFormNewUser(){
     formContainer = document.getElementById("prompt-new-user");
