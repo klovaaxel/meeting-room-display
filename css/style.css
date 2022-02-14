@@ -4,21 +4,21 @@ body{
     display: grid;
     color: white;
     font-family: 'Atkinson Hyperlegible';
-    font-size: 3vw;
+    font-size: 3vmax;
     grid-template-areas: 
         "status events"
         "main events";
 }
 h1{
-    font-size: 7vw;
+    font-size: 7vmax;
     margin: 0;
 }
 h2{
-    font-size: 5vw;
+    font-size: 5vmax;
     margin: 0;
 }
 h3{
-    font-size: 2.5vw;
+    font-size: 2.5vmax;
     margin: 0;
 }
 div#status{
@@ -43,7 +43,7 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    margin-top: 5vh;
+    margin-top: 10vh;
     margin-left: 2vw;
 }
 section.main .nextBookingTime{
@@ -57,7 +57,7 @@ section.events{
     background-color: #515151;
     display: flex;
     flex-direction: column;
-    box-shadow: 1vw 0px 5vw 2vw #2e2e2e88;
+    box-shadow: 1vmax 0px 5vmax 2vmax #2e2e2e88;
 
 }
 section.events h2{
@@ -71,37 +71,38 @@ section.events .event-container > div{
     background-color: #777777;
     border-radius: 1vw;
     margin: 0.5em;
+    padding: 1vmax 0;
     display: grid;
-    box-shadow: 0px 0px 5vw .3vw #2e2e2e88;
+    box-shadow: 0px 0px 5vmax .3vmax #2e2e2e88;
     grid-template-areas: 
         "status time"
         "status title";
 }
 .clock{
-    font-size: 10vw;
+    font-size: 10vmax;
     text-align: center;
     align-self: flex-end;
     width: 100%;
 }
 section.events .event-container > div h3{
-    margin: 0 2vw;
+    margin: 0 2vmax;
     grid-area: title;
     max-width: 100%;
-    min-width: 19vw;
+    min-width: 19vmax;
     overflow-x: scroll;
-    white-space: nowrap;
-    
+    white-space: nowrap;  
 }
 section.events .event-container > div time{
-    margin-left: 2vw;
+    margin-left: 2vmax;
     margin-right: 0.5em;
     grid-area: time;
 }
 
 section.events .event-container > div > div{
     grid-area: status;
-    border-radius: 1vw 0 0 1vw;
+    border-radius: 1vmax 0 0 1vmax;
     width: 1.5em;
+    margin: -1vmax 0;
 }
 
 #prompt-new-user{
@@ -117,7 +118,7 @@ section.events .event-container > div > div{
 }
 #prompt-new-user form{
     padding: 2em;
-    border-radius: 1vw;
+    border-radius: 1vmax;
     background-color: #515151;
     display: flex;
     flex-direction: column;
@@ -127,23 +128,48 @@ section.events .event-container > div > div{
 }
 #prompt-new-user form input{
     height: 1em;
-    font-size: 2vw;
+    font-size: 2vmax;
     padding: 1vw;
     color: #fff;
     border: none;
-    border-radius: 1vw;
+    border-radius: 1vmax;
     background-color: #777777;
     margin-bottom: 2em;
-    box-shadow: 0px 0px 3vw .3vw #2e2e2e88;
+    box-shadow: 0px 0px 3vmax .3vmax #2e2e2e88;
 }
 #prompt-new-user form button{
-    font-size: 2vw;
+    font-size: 2vmax;
     border: none;
-    border-radius: 1vw;
-    padding: 1vw;
+    border-radius: 1vmax;
+    padding: 1vmax;
     background-color: #7BC572;
     color: black;
-    box-shadow: 0px 0px 3vw .3vw #2e2e2e88;
+    box-shadow: 0px 0px 3vw .3vmax #2e2e2e88;
+}
+@media (orientation: portrait) {
+    body{
+        grid-template-areas: 
+            "status status"
+            "main main"
+            "events events";
+    }
+    div#status{
+        width: 100vw;
+    }
+    section.main{
+        width: 100vw;
+        height: 30vh;
+    }
+    section.events{
+        width: 100vw;
+        height: 60vh;    
+    }
+    section.events .event-container > div{
+        max-width: 50ch;
+    }
+    section.events .event-container > div h3{
+        min-width: 40vmax;
+    }
 }
 
 @font-face {
