@@ -43,12 +43,11 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    margin-top: 10vh;
-    margin-left: 2vw;
+    margin-top: 10vmax;
+    margin-left: 2vmax;
 }
 section.main .nextBookingTime{
-    margin-left: 2vw;
-
+    margin-left: 2vmax;
 }
 section.events{
     grid-area: events;
@@ -58,7 +57,6 @@ section.events{
     display: flex;
     flex-direction: column;
     box-shadow: 1vmax 0px 5vmax 2vmax #2e2e2e88;
-
 }
 section.events h2{
     text-align: center;
@@ -66,6 +64,7 @@ section.events h2{
 section.events .event-container{
     flex: 1 1 100%;
     overflow-y: scroll;
+    padding: 2vmax 0 0 0;
 }
 section.events .event-container > div{
     background-color: #777777;
@@ -168,7 +167,7 @@ section.events .event-container > div > div{
         max-width: 50ch;
     }
     section.events .event-container > div h3{
-        min-width: 40vmax;
+        min-width: 85vmax;
     }
 }
 
