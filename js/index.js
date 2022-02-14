@@ -23,6 +23,7 @@ let iCalendarData;
 let jcalData;
 
 function getICS(){
+    today = new Date();
     console.log("Getting ICS Feed");
     console.log(icsURL)
 
