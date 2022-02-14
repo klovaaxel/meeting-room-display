@@ -43,11 +43,10 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    margin-top: 10vmax;
-    margin-left: 2vmax;
+    margin: 10vmax 2vmax 0 2vmax;
 }
 section.main .nextBookingTime{
-    margin-left: 2vmax;
+    margin: 0 2vmax;
 }
 section.events{
     grid-area: events;
