@@ -109,8 +109,10 @@ function addEventsToHTML(events){
 
     if(activeEvents.length > 0){
         document.getElementById("status").classList = "closed";
+        updateTheme("#C57272");
     }else{
         document.getElementById("status").classList = "open";
+        updateTheme("#7BC572");
     }
     
     //-- Add/update text saying how long till next event
@@ -262,4 +264,9 @@ function submitFormNewUser(){
     formContainer.remove();
 
     loop();
+}
+
+function updateTheme(color){
+    let scheme = document.querySelector('meta[name="theme-color"]');
+    scheme.setAttribute('content', color);
 }
