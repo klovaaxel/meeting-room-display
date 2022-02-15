@@ -43,7 +43,7 @@ section.main{
     background-color: #5A5E66;
 }
 section.main h1{
-    margin: 10vmax 2vmax 0 2vmax;
+    margin: 6vmax 2vmax 0 2vmax;
 }
 section.main .nextBookingTime{
     margin: 0 2vmax;
@@ -75,6 +75,7 @@ section.events .event-container > div{
     grid-template-areas: 
         "status time"
         "status title";
+    grid-template-columns: 1fr 90%;
 }
 .clock{
     font-size: 10vmax;
@@ -86,7 +87,6 @@ section.events .event-container > div h3{
     margin: 0 2vmax;
     grid-area: title;
     max-width: 100%;
-    min-width: 19vmax;
     overflow-x: scroll;
     white-space: nowrap;  
 }
@@ -164,9 +164,6 @@ section.events .event-container > div > div{
     }
     section.events .event-container > div{
         max-width: 50ch;
-    }
-    section.events .event-container > div h3{
-        min-width: 85vmax;
     }
 }
 
