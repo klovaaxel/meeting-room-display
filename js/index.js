@@ -120,6 +120,11 @@ function addEventsToHTML(events){
     
     //-- Add/update text saying how long till next event
     updateTimeToNextEvent(uppcomingEvents, activeEvents)
+
+    //-- Update weekday
+    todayWeekDay = weekDays[today.getDay()-1]
+    document.getElementById("weekDay").appendChild(document.createTextNode(todayWeekDay));
+
 }
 
 function updateTimeToNextEvent(uppcomingEvents, activeEvents){
