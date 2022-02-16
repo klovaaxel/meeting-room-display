@@ -14,8 +14,6 @@ const urlParams = new URLSearchParams(queryString);
 let nameMonitor = urlParams.get('name'); //"Axel Karlsson" 
 let icsURL = urlParams.get('icsurl'); //'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc6a54c1fc0@stenungsund.se/2ff6c8f6193c49699814159643a9969b7290947781098632186/calendar.ics'
 
-document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
-
 //--- Today, Dates and day of the week
 let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
@@ -201,6 +199,7 @@ function getLocalStorage(){
         }else{
             nameMonitor = localStorage.getItem("nameMonitor");
             icsURL = localStorage.getItem("icsURL");
+            document.getElementById("name").innerHTML = "";
             document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
             loop();
         }
