@@ -5,9 +5,14 @@ let activeEvents = [];
 let endedEvents = [];
 let uppcomingEvents = [];
 
+//-- Get info from url if present
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+
 //-- Temp values Should be enterd on first boot
-let nameMonitor = "" //"Axel Karlsson" 
-let icsURL = "" //'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc6a54c1fc0@stenungsund.se/2ff6c8f6193c49699814159643a9969b7290947781098632186/calendar.ics'
+let nameMonitor = urlParams.get('name'); //"Axel Karlsson" 
+let icsURL = urlParams.get('icsurl'); //'https://outlook.office365.com/owa/calendar/9a94fe7204354d6088ce1fc6a54c1fc0@stenungsund.se/2ff6c8f6193c49699814159643a9969b7290947781098632186/calendar.ics'
 
 document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
 
@@ -190,14 +195,17 @@ function loop(){
 //localStorage.setItem('nameMonitor', nameMonitor)
 //localStorage.setItem('url', url)
 function getLocalStorage(){
-    if(localStorage.getItem("nameMonitor") == null && localStorage.getItem("icsURL") == null){
-        displayNewUserPrompt();
-    }else{
-        nameMonitor = localStorage.getItem("nameMonitor");
-        icsURL = localStorage.getItem("icsURL");
-        document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
-        loop();
+    if(nameMonitor == null || icsURL == null){
+        if(localStorage.getItem("nameMonitor") == null && localStorage.getItem("icsURL") == null){
+            displayNewUserPrompt();
+        }else{
+            nameMonitor = localStorage.getItem("nameMonitor");
+            icsURL = localStorage.getItem("icsURL");
+            document.getElementById("name").appendChild(document.createTextNode(nameMonitor));
+            loop();
+        }
     }
+    loop();
 }
 
 function displayNewUserPrompt(){

@@ -55,6 +55,7 @@ This means that you might need to do one of the following
 
 5. Enter room/screen name, and your ICS url on the webpage and press continue and the info should be displayed.
     - If you used a proxy server to get around [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) issues use the link you get from it.
+6. You can also add the name and ics url into the url by appending ?name=YourName&icsurl=YourICSURL. This can be done for sharing links to your rooms calendar/availabilty
 
 ## How to contribute
 1. Create a fork of this project
