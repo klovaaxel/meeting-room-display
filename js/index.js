@@ -38,9 +38,9 @@ function getICS(){
                 .slice(1)
                 .forEach(event => {
             
-                    let eventStartDate = new Date(event[1][2][3]).getDate();
+                    let eventStartDate = new Date(event[1][2][3]);
 
-                    if (eventStartDate == today.getDate()) {    
+                    if (eventStartDate.getDate() == today.getDate() && eventStartDate.getMonth() == today.getMonth() && eventStartDate.getFullYear() == today.getFullYear()) {    
                         //-- Add todays events to list
                         todayEvents.push(event);  
                     }
