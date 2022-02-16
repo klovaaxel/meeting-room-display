@@ -123,6 +123,7 @@ function addEventsToHTML(events){
 
     //-- Update weekday
     todayWeekDay = weekDays[today.getDay()-1]
+    document.getElementById("weekDay").innerHTML = "";
     document.getElementById("weekDay").appendChild(document.createTextNode(todayWeekDay));
 
 }
