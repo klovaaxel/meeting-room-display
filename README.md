@@ -18,7 +18,7 @@ PWA for meeting room displays that fetch from a ICS file
 The calendar is linked with a ical ICS feed with a public link, dependig on what URL and domain you are using you might need to disable CORS on your browser/whitelist this webpage from using CORS
 
 - ✔ Outlook Calendar
-- ✕ Google Calendar  (working on new ICS/ICAL parser)
+- ✔ Google Calendar
 
 ## How to get ICAL/ICS feed from your calendar
 This largley depends on what calendar you are using. \
@@ -34,6 +34,11 @@ For Outlook you can publish an ICS feed if you go to
 [Link to share a Room Outlook calendar](https://answers.microsoft.com/en-us/outlook_com/forum/all/how-do-i-publish-a-room-calendar/2c1f5f65-4e74-40fb-b9b2-e8c8fe34ba3b)
 
 ### Google Calendar
+For Google Calendar you can publish an ICS feed if you go to 
+- Settings (Cog up in the right corner),
+- Choose the calednar you want to choose, (in the left menu)
+- Make your calendar publicaly available under "Access permissions for events",
+- To get the direct ics link go to "Integrate calendar" section and there it is in the "Public adress in iCal format" box
 [Link to Google documentation](https://support.google.com/calendar/answer/37083?hl=en)
 
 ## Installation
