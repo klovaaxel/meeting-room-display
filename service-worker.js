@@ -59,8 +59,6 @@ self.addEventListener("fetch", (event) => {
           if (preloadResponse) {
             return preloadResponse;
           }
-          console.log("2");
-
 
           // Always try the network first.
           const networkResponse = await fetch(event.request);

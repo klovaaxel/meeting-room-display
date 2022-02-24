@@ -35,18 +35,21 @@ function getICS(){
         method: 'GET',
         success: function (data, textStatus, jqXHR) {
             todayEvents.length = 0;
-            jcalData = ICAL.parse(data);
-
-            jcalData[2]
-                .slice(1)
-                .forEach(event => {
             
-                    let eventStartDate = new Date(event[1][2][3]);
+            jsonData = convert(data);
+            events = jsonData.VCALENDAR[0].VEVENT;
 
-                    if (eventStartDate.getDate() == today.getDate() && eventStartDate.getMonth() == today.getMonth() && eventStartDate.getFullYear() == today.getFullYear()) {    
-                        //-- Add todays events to list
-                        todayEvents.push(event);  
-                    }
+            events.forEach(event => {
+                //-- Get start date of event from json object
+                dtStartKey = Object.keys(event).filter((key) => key.includes('DTSTART'));
+                eventStartDateString = event[dtStartKey].slice(0,4) + "-" + event[dtStartKey].slice(4,6) + "-" + event[dtStartKey].slice(6,11) + ":" +  event[dtStartKey].slice(11,13) + ":" +  event[dtStartKey].slice(13,16);
+                let eventStartDate = new Date(eventStartDateString)
+                
+                //-- Check if start date is today
+                if (eventStartDate.getDate() == today.getDate() && eventStartDate.getMonth() == today.getMonth() && eventStartDate.getFullYear() == today.getFullYear()) {    
+                    //-- Add todays events to list
+                    todayEvents.push(event);
+                }
 
             });       
             addEventsToHTML(todayEvents)
@@ -72,9 +75,16 @@ function addEventsToHTML(events){
     document.getElementById("event-container").innerHTML = "";
 
     events.forEach(event => {
-        let eventTitle = event[1][1][3];
-        let eventStartDate =  new Date(event[1][2][3]);
-        let eventEndDate = new Date(event[1][3][3]);
+        //-- Get event title
+        let eventTitle = event.SUMMARY;
+        //-- Get event start date
+        dtStartKey = Object.keys(event).filter((key) => key.includes('DTSTART'));
+        eventStartDateString = event[dtStartKey].slice(0,4) + "-" + event[dtStartKey].slice(4,6) + "-" + event[dtStartKey].slice(6,11) + ":" +  event[dtStartKey].slice(11,13) + ":" +  event[dtStartKey].slice(13,16);
+        let eventStartDate = new Date(eventStartDateString)
+        //-- Get event end date
+        dtEndKey = Object.keys(event).filter((key) => key.includes('DTEND'));
+        eventStartDateString = event[dtEndKey].slice(0,4) + "-" + event[dtEndKey].slice(4,6) + "-" + event[dtEndKey].slice(6,11) + ":" +  event[dtEndKey].slice(11,13) + ":" +  event[dtEndKey].slice(13,16);
+        let eventEndDate = new Date(eventStartDateString)
 
         //-- Create HTML objects with event content
         let title = document.createElement("h3");
@@ -137,14 +147,24 @@ function updateTimeToNextEvent(uppcomingEvents, activeEvents){
             p.innerHTML = "";
             p.appendChild(document.createTextNode("Unbooked for the rest of the day"));
         }else{
+            //-- Get start time of next uppcoming event
+            dtStartKey = Object.keys(uppcomingEvents[0]).filter((key) => key.includes('DTSTART'));
+            uppcomingEventStartDateString = uppcomingEvents[0][dtStartKey].slice(0,4) + "-" + uppcomingEvents[0][dtStartKey].slice(4,6) + "-" + uppcomingEvents[0][dtStartKey].slice(6,11) + ":" +  uppcomingEvents[0][dtStartKey].slice(11,13) + ":" +  uppcomingEvents[0][dtStartKey].slice(13,16);
+            let uppcomingEventDate = new Date(eventStartDateString)
+
             p.innerHTML = "";
-            timeToNextEvent = msToHM(new Date(uppcomingEvents[0][1][2][3]) - today);
+            timeToNextEvent = msToHM(uppcomingEventDate - today);
             p.appendChild(document.createTextNode(timeToNextEvent + " to next booking"))
         }
     }
     else{
+        //-- Get start time of active/current event
+        dtStartKey = Object.keys(activeEvents[0]).filter((key) => key.includes('DTSTART'));
+        activeEventStartDateString = activeEvents[0][dtStartKey].slice(0,4) + "-" + activeEvents[0][dtStartKey].slice(4,6) + "-" + activeEvents[0][dtStartKey].slice(6,11) + ":" +  activeEvents[0][dtStartKey].slice(11,13) + ":" +  activeEvents[0][dtStartKey].slice(13,16);
+        let activeEventDate = new Date(eventStartDateString)
+
         p.innerHTML = "";
-        timeEventEnd = msToHM(-(today - new Date(activeEvents[0][1][3][3])));
+        timeEventEnd = msToHM(-(today - new Date(activeEventDate)));
         p.appendChild(document.createTextNode(timeEventEnd + " to end of current booking"))
     }
 }

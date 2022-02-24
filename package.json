@@ -4,10 +4,9 @@
   "description": "PWA for meeting room displays",
   "main": "index.html",
   "dependencies": {
-    "ical.js": "^1.5.0",
+    "ical2json": "^3.0.0",
     "jquery": "^3.6.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
