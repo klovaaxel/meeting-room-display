@@ -68,7 +68,7 @@ This means that you might need to do one of the following
 3. Make your changes!
 4. Put all your changes into the correct branch
 5. Make a pull request!
-
+6. Wait for approval
 ## Contributors
 <a href="https://github.com/klovaaxel/meeting-room-display/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=klovaaxel/meeting-room-display" />
